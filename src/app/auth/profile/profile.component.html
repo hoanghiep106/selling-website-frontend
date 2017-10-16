@@ -1,0 +1,54 @@
+<div class="row" *ngIf="!editMode; else editForm">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <p><b>User email: </b>{{userInfo.email}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <p><b>Address: </b>{{userInfo.address}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 ">
+                <p><b>Phone number: </b>{{userInfo.phone}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-success" (click)="editProfile()">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #editForm>
+    <div class="row">
+        <div class="col-xs-12">
+            <form (ngSubmit)="onUpdateUserInfo(f)" #f="ngForm">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" class="form-control" [ngModel]="userInfo.address">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" id="phone" name="phone" class="form-control" [ngModel]="userInfo.phone">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" (click)="cancelEditing()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>

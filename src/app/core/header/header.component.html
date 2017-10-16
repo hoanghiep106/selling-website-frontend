@@ -11,8 +11,12 @@
                     <li routerLinkActive="active"><a routerLink="auth/signup">Register</a></li>
                     <li routerLinkActive="active"><a routerLink="auth/signin">Login</a></li>
                 </ng-template>
-                <li><a style="cursor: pointer;" (click)="authService.signout()" *ngIf="authService.isAuthenticated()">Logout</a></li>
+                <ng-template [ngIf]="authService.isAuthenticated()">
+                    <li routerLinkActive="active"><a routerLink="auth/profile">Profile</a></li>
+                    <li><a style="cursor: pointer;" (click)="authService.signout()">Logout</a></li>
+                </ng-template>
             </ul>
         </div>
     </div>
 </div>
+<div *ngIf="loading" class="loader"></div>

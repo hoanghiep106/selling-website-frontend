@@ -5,13 +5,16 @@ import { CommonModule } from '@angular/common';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { NgModule } from '@angular/core';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
     AuthRoutingModule,
     HttpModule

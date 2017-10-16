@@ -1,6 +1,4 @@
-import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import { Response } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-  constructor(public authService: AuthService,
-              private router: Router) {
+
+  constructor(public authService: AuthService) {
   }
 
   ngOnInit() {

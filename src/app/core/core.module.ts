@@ -1,15 +1,14 @@
+import { ProductsService } from '../products/products.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
 import { AuthGuard } from '../auth/auth-guard.service';
 import { AppRoutingModule } from '../app-routing.module';
-import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    HomeComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -19,6 +18,6 @@ import { NgModule } from '@angular/core';
     AppRoutingModule,
     HeaderComponent
   ],
-  providers: [AuthService, AuthGuard]
+  providers: [AuthService, AuthGuard, ProductsService]
 })
 export class CoreModule {}
