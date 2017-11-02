@@ -18,8 +18,9 @@ export class AuthService {
       password
     }).subscribe(res => {
       if (res.ok && res.status === 201) {
-        this.toastr.success('Sign up successfully! Please sign in!');
-        this.router.navigate(['/auth/signin']);
+        this.toastr.success(`Hi ${email}`);
+        this.router.navigate(['/']);
+        localStorage.setItem('token', res.json().access_token);
       }
     }, err => {
       this.toastr.error(`Signing up failed! ${err.status} ${err.json().msg}`);

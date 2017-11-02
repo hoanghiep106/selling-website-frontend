@@ -7,6 +7,6 @@ export class ProductsService {
   constructor(private http: Http) {}
 
   getProducts() {
-    return this.http.get(productsConfig.getProductsUrl);
+    return this.http.get(productsConfig.getProductsUrl).subscribe(res => console.log(res));
   }
 }

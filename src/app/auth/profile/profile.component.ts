@@ -14,6 +14,10 @@ export class ProfileComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
     this.authService.getUserInfo().subscribe(data => {
       this.userInfo = data;
     });
@@ -21,7 +25,10 @@ export class ProfileComponent implements OnInit {
 
   onUpdateUserInfo(form: NgForm) {
     const {phone, address} = form.value;
-    this.authService.updateUserInfo(phone, address).subscribe(res => this.editMode = false);
+    this.authService.updateUserInfo(phone, address).subscribe(res => {
+      this.editMode = false;
+      this.fetchData();
+    });
   }
 
   editProfile() {

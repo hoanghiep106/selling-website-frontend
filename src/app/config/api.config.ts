@@ -1,4 +1,4 @@
-const BASE_URL = 'http://fe07ea82.ngrok.io/';
+const BASE_URL = 'http://fd3fb535.ngrok.io/';
 
 export const authConfig = {
   signupUrl: BASE_URL + 'sign-up/user',
