@@ -1,3 +1,4 @@
+import { ProductFilterComponent } from './products-filter/product-filter.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +14,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   declarations: [
     ProductsComponent,
     ProductSearchComponent,
+    ProductFilterComponent,
     ProductListComponent,
     ProductItemComponent,
     ProductDetailsComponent

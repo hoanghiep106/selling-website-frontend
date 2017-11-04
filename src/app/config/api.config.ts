@@ -1,4 +1,4 @@
-const BASE_URL = 'http://fd3fb535.ngrok.io/';
+const BASE_URL = 'https://vapeshop-api.herokuapp.com/';
 
 export const authConfig = {
   signupUrl: BASE_URL + 'sign-up/user',
@@ -7,7 +7,8 @@ export const authConfig = {
 };
 
 export const productsConfig = {
-  getProductsUrl: BASE_URL + 'products'
+  categoriesUrl: BASE_URL + 'categories',
+  productsUrl: BASE_URL + 'products',
+  productsByCategoryUrl: (categoryId) => BASE_URL + 'categories/' + categoryId + '/products',
+  productUrl: (productId) => BASE_URL + 'products/' + productId
 };
-
-
