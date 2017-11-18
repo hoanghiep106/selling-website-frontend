@@ -4,7 +4,7 @@ import { EventEmitter, Injectable, ViewContainerRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import 'rxjs/add/operator/map';
 
-import {authConfig} from '../config/api.config';
+import {authAPI} from '../config/api.config';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
   constructor(private router: Router, private http: Http, private toastr: ToastrService) {}
 
   signupUser(email: string, password: string) {
-    this.http.post(authConfig.signupUrl, {
+    this.http.post(authAPI.signupUrl, {
       email,
       password
     }).subscribe(res => {
@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   signinUser(email: string, password: string) {
-    this.http.post(authConfig.signinUrl, {
+    this.http.post(authAPI.signinUrl, {
       email,
       password
     }).subscribe(res => {
@@ -54,7 +54,7 @@ export class AuthService {
 
   getUserInfo() {
     const headers = this.createAuthorizationHeader();
-    return this.http.get(authConfig.profileUrl, {
+    return this.http.get(authAPI.profileUrl, {
       headers
     }).map(res => {
       if (res.status === 200) {
@@ -65,7 +65,7 @@ export class AuthService {
 
   updateUserInfo(phone: string, address: string) {
     const headers = this.createAuthorizationHeader();
-    return this.http.put(authConfig.profileUrl, {
+    return this.http.put(authAPI.profileUrl, {
       phone,
       address
     }, {

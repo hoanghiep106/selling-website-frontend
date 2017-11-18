@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ProductFilterComponent implements OnInit {
   categories: any[] = [];
-  @Output() productsChange: EventEmitter<any[]> = new EventEmitter();
+  @Output() filterProducts: EventEmitter<any[]> = new EventEmitter();
 
   constructor(private productService: ProductsService) { }
 
@@ -18,15 +18,7 @@ export class ProductFilterComponent implements OnInit {
     });
   }
 
-  getAllProducts() {
-    this.productService.getProducts().subscribe(data => {
-      this.productsChange.emit(data.products);
-    });
-  }
-
-  getProductsByCategory(id) {
-    this.productService.getProductsByCategories(id).subscribe(data => {
-      this.productsChange.emit(data.products);
-    });
+  changeCategory(categoryId) {
+    this.productService.onChangeCategory(categoryId);
   }
 }

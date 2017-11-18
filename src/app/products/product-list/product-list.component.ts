@@ -1,3 +1,4 @@
+import { PagerService } from '../../services/pager.services';
 import { ProductsService } from '../products.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,15 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
   products: any[] = [];
+  pager: any = {};
 
   constructor(private productService: ProductsService) { }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(data => this.products = data.products);
+    this.productService.productsChange.subscribe(data => {
+      this.products = data.products;
+      this.pager = data.pager;
+    });
+    this.productService.onSetPage(1);
   }
 
-  updateProducts(products) {
-    this.products = products;
+  setPage(page: number) {
+    if (page > 0 && page <= this.pager.totalPages && page !== this.pager.currentPage) {
+      this.productService.onSetPage(page);
+    }
   }
 
 }

@@ -9,6 +9,7 @@ import { ProductSearchComponent } from './product-search/product-search.componen
 import { ProductsComponent } from './products.component';
 import { NgModule } from '@angular/core';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { PagerService } from '../services/pager.services';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     FormsModule,
     HttpModule,
     ProductsRoutingModule
-  ]
+  ],
+  providers: [PagerService]
 })
 export class ProductsModule {}

@@ -1,7 +1,14 @@
-a.category {
+.category {
     float: left;
     margin-right: 10px;
     cursor: pointer;
+    padding: 5px 10px;
+    background-color: #337ab7;
+    color: white;
+    border-radius: 5px;
+    opacity: 0.8;
 }
 
-a.category:hover {}
+.category:hover {
+    opacity: 1;
+}
