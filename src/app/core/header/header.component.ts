@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   isShowingCart = false;
   isShowingForm = false;
   totalAmount = 0;
+  loading = false;
 
   constructor(public authService: AuthService,
               public cartService: CartService,
@@ -20,15 +21,22 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {}
 
+  getCartInfo() {
+    this.loading = true;
+    this.cartService.getCart().subscribe(res => {
+      this.productsInCart = res.products;
+      this.totalAmount = res.total_money;
+      this.loading = false;
+    }, err => {
+      this.toastr.error('Get cart fail.');
+      this.loading = false;
+    });
+  }
+
   showCart() {
     if (localStorage.getItem('orderId')) {
       if (!this.isShowingCart) {
-        this.cartService.getCart().subscribe(res => {
-          this.productsInCart = res.products;
-          this.totalAmount = res.total_money;
-        }, err => {
-          this.toastr.error('Get cart fail.');
-        });
+        this.getCartInfo();
       } else {
         this.isShowingForm = false;
       }
@@ -37,6 +45,12 @@ export class HeaderComponent implements OnInit {
       this.totalAmount = 0;
     }
     this.isShowingCart = !this.isShowingCart;
+  }
+
+  deleteFromCart(productId) {
+    this.cartService.removeFromCart(productId).subscribe(res => {
+      this.getCartInfo();
+    }, err => this.toastr.error('Cannot remove from cart'));
   }
 
   closeCart() {
@@ -58,11 +72,14 @@ export class HeaderComponent implements OnInit {
       address: f.value.address,
       phone_number: f.value.phone_number
     };
+    this.loading = true;
     this.cartService.checkoutCart(form).subscribe(res => {
       this.resetCart();
       this.toastr.success('Order sent. <br>We will contact you asap.');
+      this.loading = false;
     }, err => {
       this.toastr.error('Something went wrong. Try again later!');
+      this.loading = false;
     });
   }
 

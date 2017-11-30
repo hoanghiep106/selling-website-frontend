@@ -19,6 +19,7 @@ export class ProductDetailsComponent implements OnInit {
     category_name: ''
   };
   valid = true;
+  loading = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -48,10 +49,13 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(form: NgForm) {
     if (form.value.quantity) {
       this.valid = true;
+      this.loading = true;
       this.cartService.addToCart(this.product._id, form.value.quantity).subscribe(res => {
         this.toastr.success('Added to cart');
+        this.loading = false;
       }, err => {
         this.toastr.error('Add to cart fail');
+        this.loading = false;
       });
     } else {
       this.valid = false;

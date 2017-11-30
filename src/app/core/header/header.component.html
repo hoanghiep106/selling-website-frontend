@@ -27,7 +27,8 @@
     <div class="col-xs-6">
         <div class="text-right">
           <div *ngFor="let product of productsInCart">
-            <h5><b>{{product.product.name}}</b>({{product.product.category}}): <b>{{product.quantity_in_cart}}</b></h5>
+            <h5 class="product-cart"><b>{{product.product.name}}</b>({{product.product.category}}): <b>{{product.quantity_in_cart}}</b></h5>
+            <button class="remove-button" (click)="deleteFromCart(product.product._id)">-</button>
           </div>
         </div>
       </div>
@@ -58,4 +59,6 @@
       </div>
   </div>
 </div>
-<div *ngIf="loading" class="loader"></div>
+<div *ngIf="loading" class="loader-background">
+    <div class="loader"></div>
+</div>

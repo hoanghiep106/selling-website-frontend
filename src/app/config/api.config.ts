@@ -24,7 +24,7 @@ export const categoriesAPI = {
 
 export const cartAPI = {
   addToCartUrl: BASE_URL + 'carts',
-  removeFromCartUrl: (productId) => BASE_URL + 'carts/products/' + productId,
+  removeFromCartUrl: (orderId, productId) => BASE_URL + 'carts/order/' + orderId + '/product/' + productId,
   getCartUrl: (orderId) => BASE_URL + 'carts/order/' + orderId,
   checkoutUrl: (orderId) => BASE_URL + 'orders/checkout/' + orderId
 };

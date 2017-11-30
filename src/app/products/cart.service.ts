@@ -39,7 +39,7 @@ export class CartService {
   }
 
   removeFromCart(productID) {
-    return this.http.delete(cartAPI.removeFromCartUrl(productID)).map(res => res.json());
+    return this.http.delete(cartAPI.removeFromCartUrl(localStorage.getItem('orderId'), productID)).map(res => res.json());
   }
 
   checkoutCart(form) {

@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProfileComponent implements OnInit {
   editMode = false;
   userInfo = {};
+  loading = false;
 
   constructor(private authService: AuthService, private toastr: ToastrService) { }
 
@@ -19,21 +20,27 @@ export class ProfileComponent implements OnInit {
   }
 
   fetchData() {
+    this.loading = true;
     this.authService.getUserInfo().subscribe(data => {
       this.userInfo = data;
+      this.loading = false;
     }, err => {
       this.toastr.error('Get user profile fail');
+      this.loading = false;
     });
   }
 
   onUpdateUserInfo(form: NgForm) {
     const {phone, address} = form.value;
+    this.loading = true;
     this.authService.updateUserInfo(phone, address).subscribe(res => {
       this.editMode = false;
       this.toastr.success('User profile updated');
+      this.loading = false;
       this.fetchData();
     }, err => {
       this.toastr.error('Update user profile fail');
+      this.loading = false;
     });
   }
 
