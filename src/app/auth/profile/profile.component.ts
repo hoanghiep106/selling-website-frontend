@@ -1,6 +1,7 @@
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms/src/directives';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ export class ProfileComponent implements OnInit {
   editMode = false;
   userInfo = {};
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.fetchData();
@@ -20,6 +21,8 @@ export class ProfileComponent implements OnInit {
   fetchData() {
     this.authService.getUserInfo().subscribe(data => {
       this.userInfo = data;
+    }, err => {
+      this.toastr.error('Get user profile fail');
     });
   }
 
@@ -28,6 +31,8 @@ export class ProfileComponent implements OnInit {
     this.authService.updateUserInfo(phone, address).subscribe(res => {
       this.editMode = false;
       this.fetchData();
+    }, err => {
+      this.toastr.error('Update user profile fail');
     });
   }
 

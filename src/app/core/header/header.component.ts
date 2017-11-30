@@ -25,11 +25,17 @@ export class HeaderComponent implements OnInit {
       this.cartService.getCart().subscribe(res => {
         this.productsInCart = res.products;
         this.totalAmount = res.total_money;
+      }, err => {
+        this.toastr.error('Get cart fail.');
       });
     } else {
       this.isShowingForm = false;
     }
     this.isShowingCart = !this.isShowingCart;
+  }
+
+  closeCart() {
+    this.isShowingCart = false;
   }
 
   showCheckoutForm() {

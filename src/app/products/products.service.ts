@@ -4,6 +4,7 @@ import {productsAPI, categoriesAPI} from '../config/api.config';
 import { query } from '@angular/core/src/animation/dsl';
 import { Observable } from 'rxjs/Observable';
 import { PagerService } from '../services/pager.services';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ProductsService {
@@ -15,7 +16,7 @@ export class ProductsService {
   pager: any;
   productsChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(private http: Http, private pagerService: PagerService) {}
+  constructor(private http: Http, private pagerService: PagerService, private toastr: ToastrService) {}
 
   onChangeCategory(categoryId) {
     this.searchTerm = undefined;
@@ -48,6 +49,8 @@ export class ProductsService {
         products: this.products,
         pager: this.pager
       });
+    }, err => {
+      this.toastr.error('Cannot get product list');
     });
   }
 

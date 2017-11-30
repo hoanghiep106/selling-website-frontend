@@ -3,6 +3,7 @@ import { CartService } from './../cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../products.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -22,7 +23,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private productService: ProductsService,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -48,6 +50,8 @@ export class ProductDetailsComponent implements OnInit {
       this.valid = true;
       this.cartService.addToCart(this.product._id, form.value.quantity).subscribe(res => {
         console.log(res);
+      }, err => {
+        this.toastr.error('Add to cart fail');
       });
     } else {
       this.valid = false;

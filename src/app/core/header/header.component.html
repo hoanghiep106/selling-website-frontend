@@ -21,36 +21,39 @@
         </div>
     </div>
 </div>
-<div *ngIf="isShowingCart" class="cart row">
-  <div class="col-xs-6">
-    <div class="text-right">
-      <div *ngFor="let product of productsInCart">
-        <div>{{product.product.name}}: {{product.quantity_in_cart}}</div>
+<div *ngIf="isShowingCart" class="cart container">
+  <div class="row">
+    <button (click)="closeCart()">x</button>
+    <div class="col-xs-6">
+        <div class="text-right">
+          <div *ngFor="let product of productsInCart">
+            <div>{{product.product.name}}: {{product.quantity_in_cart}}</div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="col-xs-6">
-    <div class="text-left">
-      <div>{{totalAmount}}</div>
-    </div>
-    <button type="button" class="call-to-action" (click)="showCheckoutForm()">Checkout cart</button>
-  </div>
-  <div>
-    <form *ngIf="isShowingForm" (ngSubmit)="onCheckout(f)" #f="ngForm">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" ngModel class="form-control">
+      <div class="col-xs-6">
+        <div class="text-left">
+          <div>{{totalAmount}}</div>
         </div>
-        <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" ngModel class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="phone_number">Phone number</label>
-            <input type="text" id="phone_number" name="phone_number" ngModel class="form-control">
-        </div>
-        <button class="btn btn-primary" type="submit">Accept</button>
-    </form>
+        <button type="button" class="call-to-action" (click)="showCheckoutForm()">Checkout cart</button>
+      </div>
+      <div>
+        <form *ngIf="isShowingForm" (ngSubmit)="onCheckout(f)" #f="ngForm">
+          <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" ngModel class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" ngModel class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="phone_number">Phone number</label>
+              <input type="text" id="phone_number" name="phone_number" ngModel class="form-control">
+          </div>
+          <button class="btn btn-primary" type="submit">Accept</button>
+        </form>
+      </div>
   </div>
 </div>
 <div *ngIf="loading" class="loader"></div>
