@@ -1,4 +1,4 @@
-const BASE_URL = 'https://vapeshop-api.herokuapp.com/';
+const BASE_URL = 'http://hardtobelieve.me:5000/';
 
 export const authAPI = {
   signupUrl: BASE_URL + 'sign-up/user',
@@ -18,5 +18,13 @@ export const productsAPI = {
 };
 
 export const categoriesAPI = {
-  categoriesUrl: BASE_URL + 'categories'
+  categoriesUrl: BASE_URL + 'categories',
+  categoryUrl: (categoryId) => BASE_URL + 'categories/' + categoryId
+};
+
+export const cartAPI = {
+  addToCartUrl: BASE_URL + 'carts',
+  removeFromCartUrl: (productId) => BASE_URL + 'carts/products/' + productId,
+  getCartUrl: (orderId) => BASE_URL + 'carts/order/' + orderId,
+  checkoutUrl: (orderId) => BASE_URL + 'orders/checkout/' + orderId
 };

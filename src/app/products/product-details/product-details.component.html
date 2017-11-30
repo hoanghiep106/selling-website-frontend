@@ -1,3 +1,18 @@
-<p>
-  product-details works!
-</p>
+<div class="row">
+  <div class="col-xs-5">
+    <img src={{product.image}} alt="" width="100%">
+  </div>
+  <div class="col-xs-5">
+    <h2><b>{{product.name}}</b></h2>
+    <h5><i>{{product.category}}</i></h5>
+    <h3 class="mb-3"><b>{{numberWithDots(product.price)}} đ</b></h3>
+    <form (ngSubmit)="addToCart(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" ngModel class="form-control">
+            <span class="red" *ngIf="!valid">Please choose the quantity</span>
+        </div>
+        <button type="submit" class="call-to-action">Add to cart</button>
+    </form>
+  </div>
+</div>

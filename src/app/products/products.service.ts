@@ -51,7 +51,15 @@ export class ProductsService {
     });
   }
 
+  getProductById(id) {
+    return this.http.get(productsAPI.productUrl(id)).map(res => res.json());
+  }
+
   getCategories() {
     return this.http.get(categoriesAPI.categoriesUrl).map(res => res.json());
+  }
+
+  getCategoryById(id) {
+    return this.http.get(categoriesAPI.categoryUrl(id)).map(res => res.json());
   }
 }

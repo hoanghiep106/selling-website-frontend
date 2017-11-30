@@ -1,0 +1,40 @@
+button:focus {outline:0;}
+
+.blue {
+  color: #20a8d8;
+}
+
+.red {
+  color: red;
+}
+
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.call-to-action {
+  margin-top: 10px;
+  min-width: 120px;
+  padding: 5px 10px;
+  background-color: #20a8d8;
+  color: white;
+  opacity: 0.8;
+}
+
+.call-to-action:hover {
+  opacity: 1;
+}
+
+.cart {
+  position: fixed !important;
+  top: 50px;
+  width: 100%;
+  padding: 15px 30px;
+  z-index: 10;
+  background-color: white;
+  border-bottom: 1px solid #DDD;
+}

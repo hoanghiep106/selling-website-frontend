@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-item',
@@ -7,11 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product: any;
-  defaultImageUrl: String = 'https://cdn0.iconfinder.com/data/icons/thin-home-living/57/thin-477_t_shirt_clothes-512.png';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  showProductDetail() {
+    this.router.navigate(['products', this.product._id]);
   }
 
 }

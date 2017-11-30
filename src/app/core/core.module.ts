@@ -1,3 +1,5 @@
+import { FormsModule } from '@angular/forms';
+import { CartService } from './../products/cart.service';
 import { ProductsService } from '../products/products.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth/auth.service';
@@ -12,12 +14,13 @@ import { NgModule } from '@angular/core';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   exports: [
     AppRoutingModule,
     HeaderComponent
   ],
-  providers: [AuthService, AuthGuard, ProductsService]
+  providers: [AuthService, AuthGuard, ProductsService, CartService]
 })
 export class CoreModule {}

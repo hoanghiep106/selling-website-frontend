@@ -1,6 +1,7 @@
 .product-item {
     padding: 20px;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .product-item:hover {
