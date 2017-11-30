@@ -49,9 +49,8 @@ export class ProductsService {
         products: this.products,
         pager: this.pager
       });
-    }, err => {
-      this.toastr.error('Cannot get product list');
-    });
+      return data;
+    }, error => this.toastr.error('Cannot get products'));
   }
 
   getProductById(id) {

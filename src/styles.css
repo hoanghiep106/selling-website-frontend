@@ -92,3 +92,8 @@ button:focus {outline:0;}
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.checkout-form {
+  width: 60%;
+  margin-left: 20%;
+}

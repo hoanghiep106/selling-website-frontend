@@ -48,9 +48,14 @@ export class HeaderComponent implements OnInit {
   }
 
   deleteFromCart(productId) {
+    this.loading = true;
     this.cartService.removeFromCart(productId).subscribe(res => {
       this.getCartInfo();
-    }, err => this.toastr.error('Cannot remove from cart'));
+      this.loading = false;
+    }, err => {
+      this.toastr.error('Cannot remove from cart');
+      this.loading = false;
+    });
   }
 
   closeCart() {
@@ -75,7 +80,7 @@ export class HeaderComponent implements OnInit {
     this.loading = true;
     this.cartService.checkoutCart(form).subscribe(res => {
       this.resetCart();
-      this.toastr.success('Order sent. <br>We will contact you asap.');
+      this.toastr.success('Order sent. We will contact you as soon as possible.');
       this.loading = false;
     }, err => {
       this.toastr.error('Something went wrong. Try again later!');

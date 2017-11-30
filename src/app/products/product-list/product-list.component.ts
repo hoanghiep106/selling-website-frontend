@@ -1,6 +1,7 @@
 import { PagerService } from '../../services/pager.services';
 import { ProductsService } from '../products.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-list',
@@ -10,8 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class ProductListComponent implements OnInit {
   products: any[] = [];
   pager: any = {};
+  loading = false;
 
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductsService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.productService.productsChange.subscribe(data => {
