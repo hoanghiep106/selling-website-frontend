@@ -23,19 +23,21 @@
 </div>
 <div *ngIf="isShowingCart" class="cart container">
   <div class="row">
-    <button (click)="closeCart()">x</button>
+    <button class="close-button" (click)="closeCart()">x</button>
     <div class="col-xs-6">
         <div class="text-right">
           <div *ngFor="let product of productsInCart">
-            <div>{{product.product.name}}: {{product.quantity_in_cart}}</div>
+            <h5><b>{{product.product.name}}</b>({{product.product.category}}): <b>{{product.quantity_in_cart}}</b></h5>
           </div>
         </div>
       </div>
       <div class="col-xs-6">
         <div class="text-left">
-          <div>{{totalAmount}}</div>
+          <h5>Total amount:</h5>
+          <h4><b>{{numberWithDots(totalAmount)}}đ</b></h4>
         </div>
-        <button type="button" class="call-to-action" (click)="showCheckoutForm()">Checkout cart</button>
+        <button type="button" class="btn btn-info" (click)="showCheckoutForm()">Checkout cart</button>
+        <button type="button" class="btn btn-danger" (click)="resetCart()">Reset cart</button>
       </div>
       <div>
         <form *ngIf="isShowingForm" (ngSubmit)="onCheckout(f)" #f="ngForm">

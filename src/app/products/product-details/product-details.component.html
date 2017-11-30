@@ -5,7 +5,7 @@
   <div class="col-xs-5">
     <h2><b>{{product.name}}</b></h2>
     <h5><i>{{product.category}}</i></h5>
-    <h3 class="mb-3"><b>{{numberWithDots(product.price)}} đ</b></h3>
+    <h3 class="mb-3"><b>{{numberWithDots(product.price)}}đ</b></h3>
     <form (ngSubmit)="addToCart(f)" #f="ngForm">
         <div class="form-group">
             <label for="quantity">Quantity</label>

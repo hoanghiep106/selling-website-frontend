@@ -21,21 +21,27 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   showCart() {
-    if (!this.isShowingCart && localStorage.getItem('orderId')) {
-      this.cartService.getCart().subscribe(res => {
-        this.productsInCart = res.products;
-        this.totalAmount = res.total_money;
-      }, err => {
-        this.toastr.error('Get cart fail.');
-      });
+    if (localStorage.getItem('orderId')) {
+      if (!this.isShowingCart) {
+        this.cartService.getCart().subscribe(res => {
+          this.productsInCart = res.products;
+          this.totalAmount = res.total_money;
+        }, err => {
+          this.toastr.error('Get cart fail.');
+        });
+      } else {
+        this.isShowingForm = false;
+      }
     } else {
-      this.isShowingForm = false;
+      this.productsInCart = [];
+      this.totalAmount = 0;
     }
     this.isShowingCart = !this.isShowingCart;
   }
 
   closeCart() {
     this.isShowingCart = false;
+    this.isShowingForm = false;
   }
 
   showCheckoutForm() {
@@ -53,10 +59,27 @@ export class HeaderComponent implements OnInit {
       phone_number: f.value.phone_number
     };
     this.cartService.checkoutCart(form).subscribe(res => {
-      localStorage.removeItem('orderId');
+      this.resetCart();
+      this.toastr.success('Order sent. <br>We will contact you asap.');
     }, err => {
       this.toastr.error('Something went wrong. Try again later!');
     });
+  }
+
+  resetCart() {
+    localStorage.removeItem('orderId');
+    this.closeCart();
+  }
+
+  numberWithDots(x) {
+    if (typeof x === 'number') {
+      x = x.toString();
+      const pattern = /(-?\d+)(\d{3})/;
+      while (pattern.test(x)) {
+        x = x.replace(pattern, '$1.$2');
+      }
+      return x;
+    }
   }
 }
 

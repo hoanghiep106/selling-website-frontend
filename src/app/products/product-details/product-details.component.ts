@@ -49,7 +49,7 @@ export class ProductDetailsComponent implements OnInit {
     if (form.value.quantity) {
       this.valid = true;
       this.cartService.addToCart(this.product._id, form.value.quantity).subscribe(res => {
-        console.log(res);
+        this.toastr.success('Added to cart');
       }, err => {
         this.toastr.error('Add to cart fail');
       });
